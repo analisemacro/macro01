@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Introdução à Macroeconomia</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Vítor Wilher Cientista-Chefe da Análise Macro " />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
+    <script src="libs/jquery/jquery.min.js"></script>
+    <link href="libs/leaflet/leaflet.css" rel="stylesheet" />
+    <script src="libs/leaflet/leaflet.js"></script>
+    <link href="libs/leafletfix/leafletfix.css" rel="stylesheet" />
+    <script src="libs/proj4/proj4.min.js"></script>
+    <script src="libs/Proj4Leaflet/proj4leaflet.js"></script>
+    <link href="libs/rstudio_leaflet/rstudio_leaflet.css" rel="stylesheet" />
+    <script src="libs/leaflet-binding/leaflet.js"></script>
+    <link href="libs/leaflet-awesomemarkers/leaflet.awesome-markers.css" rel="stylesheet" />
+    <script src="libs/leaflet-awesomemarkers/leaflet.awesome-markers.min.js"></script>
+    <link href="libs/ionicons/ionicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Introdução à Macroeconomia
+## Macroeconomia para Investimentos
+### Vítor Wilher<br><span style = "font-size: 70%;">Cientista-Chefe da Análise Macro<br>
+
+---
+
+
+
+
+
+
+
+&lt;style type="text/css"&gt;
+pre {
+  white-space: pre-wrap;
+  overflow-y: scroll !important;
+  max-height: 45vh !important;
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.lea {
+margin: auto;
+width: 50%;
+}
+
+.tiny40 .remark-code {
+  font-size: 40%; !important;
+}
+&lt;/style&gt;
+
+
+
+### Temas de hoje
+
+- O que é macroeconomia?&lt;br&gt;&lt;br&gt;
+- Motivações clássicas da macroeconomia&lt;br&gt;&lt;br&gt;
+- Como os economistas pensam?&lt;br&gt;&lt;br&gt;
+- Conceitos fundamentais&lt;br&gt;&lt;br&gt;
+- Preparando as ferramentas
+
+
+---
+class: middle, center, inverse
+# O que é macroeconomia?
+
+---
+### O que é macroeconomia?
+
+A macroeconomia é um ramo da ciência econômica que estuda o **comportamento de uma economia como um todo**. Em contraste, a microeconomia se preocupa em como os indivíduos e firmas tomam decisões.
+
+**Por exemplo**: 
+
+- A decisão de um trabalhador em fazer horas extras não é um problema macroeconômico;
+- A taxa de inflação observada em uma economia é um problema macroeconômico.
+
+Dessa forma, os macroeconomistas preocupam-se em analisar indicadores agregados como PIB, taxa de desemprego e índices de preços para entender como toda a economia funciona.
+
+Em termos didáticos, você também pode pensar na distinção entre macro e micro com o uso de uma **analogia**:
+
+- A **macroeconomia** procura olhar apenas para a floresta como um todo, sem se preocupar com as árvores;
+- A **microeconomia** se preocupa com as árvores individualmente e se esquece da floresta.
+
+No entanto, a teoria econômica moderna combina conceitos micro e macro, de modo que a macroeconomia atual é microfundamentada. Ao longo do nosso curso, sempre que for pertinente, faremos considerações sobre as árvores, mas nossa preocupação principal será a floresta.
+
+
+---
+### Por que a macroeconomia é "agregada"?
+
+O todo é mais complexo do que a soma das partes. Não é possível descrever uma economia formando modelos para todas as empresas e indivíduos e todos os seus efeitos cruzados.
+
+A macroeconomia investiga o comportamento agregado impondo **premissas simplificadoras** ("suponha que existam muitas firmas idênticas que produzem o mesmo bem"), mas sem abstrair as características essenciais.
+
+Essas premissas são utilizadas para construir **modelos macroeconômicos**. Normalmente, esses modelos possuem três aspectos:
+
+- uma "história";
+- uma formulação matemática;
+- e uma representação gráfica.
+
+
+---
+class: middle, center, inverse
+# Motivações clássicas da macroeconomia
+
+---
+### Metas de política econômica
+
+Os políticos devem ser aconselhados sobre como influenciar o comportamento da economia, de modo que metas especificadas possam ser cumpridas de forma otimizada. Conforme Blanchard (2017), as metas são, geralmente, constituidas pelo tripé de: **crescimento econômico, preços estáveis e baixo desemprego**.
+
+&lt;img src="macro01_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+### Tópicos de macroeconomia
+
+Dessa forma, muitos tópicos interessantes podem surgir e são estudados na macroeconomia, como:
+
+- Por que o custo de vida continua subindo?&lt;br&gt;&lt;br&gt;
+- Por que milhões de pessoas estão desempregadas, mesmo quando a economia está crescendo?&lt;br&gt;&lt;br&gt;
+- O que causa recessões? E os ciclos econômicos?&lt;br&gt;&lt;br&gt;
+- Aumentar a oferta monetária pode gerar mais crescimento?&lt;br&gt;&lt;br&gt;
+- Por que tantos países são pobres? Quais políticas poderiam ajudá-los a sair da pobreza?&lt;br&gt;&lt;br&gt;
+- O que determina o crescimento econômico de longo prazo da economia?&lt;br&gt;&lt;br&gt;
+- A taxa de câmbio deve ser mantida em um nível fixo?&lt;br&gt;&lt;br&gt;
+- Pode-se trocar um aumento da inflação por uma diminuição do desemprego?
+
+Essas não são questões triviais.
+
+
+---
+class: middle, center, inverse
+# Como os economistas pensam?
+
+---
+### Os economistas pensam com modelos
+
+De forma a endereçar questões como essas os economistas costumam formular modelos, que podem ser entendidos como representações simplificadas do mundo real, usados como base para explicar relações ou realizar previsões.
+
+**Por exemplo**: um mapa é, em essência, um modelo para nos locomovermos de um ponto A a um ponto B.
+
+.lea[
+<div id="htmlwidget-f78ee94ed296fbeed2c4" style="width:100%;height:1500px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f78ee94ed296fbeed2c4">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addAwesomeMarkers","args":[-27.5924127104147,-48.56058389281,{"markerColor":"red","iconColor":"black","icon":"ios-close","prefix":"ion"},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addAwesomeMarkers","args":[-27.5888748170521,-48.5535389702706,{"markerColor":"blue","iconColor":"black","icon":"ios-close","prefix":"ion"},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"setView":[[-27.5900247261626,-48.5567920080915],15.4,-48.5567920080915],"limits":{"lat":[-27.5924127104147,-27.5888748170521],"lng":[-48.56058389281,-48.5535389702706]}},"evals":[],"jsHooks":[]}</script>
+]
+
+
+---
+### A comunicação dos economistas
+
+Conforme já mencionado, dadas as premissas, os modelos possuem uma "história", uma formulação matemática e uma representação gráfica. 
+
+Geralmente, os economistas se beneficiam do uso da **linguagem matemática** como forma de simplificar e tornar mais claras as relações entre as variáveis macroeconômicas. No entanto, tentaremos minimizar ao máximo essa forma de comunicação, optando por abordar modelos macroeconômicos de uma maneira simples, intuitiva e lógica.
+
+**Representações gráficas** são úteis e serão oportunamente exploradas para facilitar o aprendizado.
+
+Sendo assim, utilizaremos a macroeconomia para:
+
+- Tentar entender o mundo real;
+- Avaliar a utilidade de modelos com dados reais;
+- Exercitar habilidades quantitativas.
+
+
+---
+class: middle, center, inverse
+# Conceitos fundamentais
+
+
+---
+### Conceitos fundamentais
+
+- **Ceteris paribus**: uma expressão do latim que significa "todo o mais é constante", ou seja, nada muda, exceto o fator ou fatores que estão sendo estudados;
+
+- **Variável endógena**: também chamada de dependente, é a variável cujos valores são determinados no modelo;
+
+- **Variável exógena**: também chamada de independente, é a variável cujos valores são determinados fora do modelo, ou seja, o modelo toma seus valores e comportamento como dados;
+
+- **Preços flexíveis**: uma suposição de que os preços são flexíveis, ou seja, se ajustam para igualar oferta e demanda. Por exemplo: com o advento da pandemia da Covid-19 os preços de alimentação e bebidas aumentaram expressivamente no Brasil;
+
+- **Preços rígidos**: no curto prazo, muitos preços são rígidos, ou seja, se ajustam lentamente em resposta a mudanças na oferta ou na demanda. Por exemplo: muitos contratos de trabalho fixam o salário nominal por 1 ano ou mais.
+
+
+---
+### Conceitos fundamentais
+
+- **Agregados macroeconômicos**: aquelas variáveis que representam de forma agregada toda a
+economia de um país, sintetizando informações para a análise e comparações. Por exemplo: o PIB é a soma de todos os bens e serviços finais produzidos por um país em determinado período de tempo.
+
+- **Fluxo**: magnitude econômica medida dentro de um intervalo de tempo. Por exemplo: PIB (taxa trimestral), salário (mensal), os pagamentos (periódicos) de uma dívida parcelada;
+
+- **Estoque**: é uma magnitude medida em um determinado ponto específico no tempo. Por exemplo: saldo do CAGED no ano, dívida externa do país, população do país.
+
+
+
+---
+class: middle, center, inverse
+# Preparando as ferramentas
+
+---
+### As ferramentas
+
+.pull-left[
+
+Ao longo do curso utilizaremos as **linguagens de programação R e Python** para exercícios aplicados explorando tópicos pertinentes. São ambas ferramentas gratuitas e amplamente utilizadas em diversas áreas. Saiba mais sobre o R &lt;a href="https://pt.wikipedia.org/wiki/R_(linguagem_de_programa%C3%A7%C3%A3o)"&gt;aqui&lt;/a&gt; e sobre o Python [aqui](https://pt.wikipedia.org/wiki/Python).
+
+]
+
+.pull-right[
+
+.center[
+&lt;img src="imgs/r.png" width="190"/&gt;&amp;nbsp; &amp;nbsp; &lt;img src="imgs/python.svg" width="150"/&gt; 
+]
+
+]
+
+Se esse é o seu primeiro contato com as linguagens, preparamos a seguir um breve **tutorial de primeiros passos** com o objetivo é preparar um ambiente de programação. Ou seja, expliraremos o que você precisa fazer para poder, nas próximas aulas, realizar os exercícios práticos, seja em R ou em Python. 
+
+Vale frisar que a escolha das **interfaces** para utilização das linguagens é arbitrária e pessoal, você é livre para utilizar opções alternativas. No curso utilizaremos as interfaces mais conhecidas atualmente e que proporcionam o mínimo possível de barreiras à entrada.
+
+
+---
+### R e RStudio
+
+**Opção 1**: trabalhando localmente
+
+- **Instalar o R**:&lt;br&gt;1. Acesse o CRAN por [https://www.r-project.org/](https://www.r-project.org/) e em *Downloads*, na barra lateral esquerda, clique em *CRAN*&lt;br&gt;2. Escolha uma localização próxima a você (i.e. Brasil) e clique no link correspondente&lt;br&gt;3. Clique em "*Download for ...*", onde ... é o sistema operacional que você usa (Windows, Linux, macOS?)&lt;br&gt;4. Baixando e instalando o R:&lt;br&gt;4.1 Se **Windows**: &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;4.1.1 Clique em *base*, depois em *Download R-x.x.x for Windows*, sendo que x.x.x é a última versão do R disponível, execute o arquivo baixado e siga as instruções da tela para instalação.&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;4.1.2 Baixe e instale, também, o **[RTools](https://cran.fiocruz.br/bin/windows/Rtools/)** (veja como [neste link](https://cran.fiocruz.br/bin/windows/Rtools/)).&lt;br&gt;4.2 Se **macOS**: em *Latest release* clique no link *R-x.x.x.pkg* correspondente a sua versão de macOS, execute o arquivo baixado e siga as instruções da tela para instalação.&lt;br&gt;4.3 Se **Linux**: clique no link correspondente a distribuição do Linux que você utiliza (ubuntu, debian, etc.) e siga as instruções da tela para instalação.
+
+- **Instalar o RStudio**:&lt;br&gt;1. Baixe o programa, correspondente ao seu sistema operacional, através [deste link](https://www.rstudio.com/products/rstudio/download/#download)&lt;br&gt;2. Execute o arquivo baixado e siga as instruções da tela de instalação (em caso de Linux, [veja esse link](https://www.rstudio.com/products/rstudio/download-server/debian-ubuntu/)).
+
+---
+### R e RStudio
+
+**Opção 2**: ambiente na nuvem
+
+- **Utilizando o RStudio Cloud**:
+
+  1. Crie um conta na [RStudio Cloud](https://rstudio.cloud/) (pode ser a gratuita)
+  2. Uma vez logado na conta, clique no botão *New Project &gt; New RStudio Project* para abrir uma sessão do RStudio na nuvem
+
+Pronto! Ao utilizar o ambiente de nuvem não é necessário instalar o R ou RStudio, eles já estão prontos para uso!
+
+Vale pontuar que a plataforma RStudio Cloud pode ser usada gratuitamente mas com limitação de recursos de hardware.
+
+---
+### R e RStudio
+
+**Teste o funcionamento**
+
+Uma vez que você tenha um ambiente de programação em R preparado, é importante testar o seu funcionamento. Uma maneira simples de fazer isso é exemplificada abaixo.
+
+Abra o RStudio e, no Console, teste a instalação/carregamento de algum pacote (copie/cole o código abaixo e aperte Enter para executar). Se você não obteve erros, como abaixo, significa que está tudo funcionando!
+
+
+```
+## [1] 2
+```
+
+Não se preocupe em entender os comando neste momento, voltaremos a isso nas próximas aulas.
+
+---
+### Python e Google Colab
+
+**Opção 1**: ambiente local
+
+- **Instalar o Python**:
+  1. Acesse o site [https://www.python.org/downloads/](https://www.python.org/downloads/) e clique no botão de *Download Python* na tela ou navegue até o link de download da versão para o seu sistema operacional
+  2. Instalando o Python:&lt;br&gt;
+    2.1 Se **Windows** ou **macOS**: execute o arquivo baixado e siga as instruções da tela para instalação. Importante: habilite, na tela de instalação, a opção de adicionar o Python ao `\(PATH\)` e de instalar o `\(pip\)`;&lt;br&gt;
+    2.2 Se **Linux**: verifique as instruções de instalação através [deste link](https://docs.python-guide.org/starting/install3/linux/#install3-linux).
+
+---
+### Python e Google Colab
+
+- **Instalar o Jupyter Notebook**:
+  1. Abra o Prompt de Comando/Terminal do seu sistema e verifique se o `\(pip\)` está instalado junto ao Python:
+    1.1 Se Windows: execute no Prompt o comando `py -m pip --version`&lt;br&gt;
+    1.2 Se Linux/macOS: execute no Terminal o comando `python3 -m pip --version`
+  2. Se o `\(pip\)` não estiver disponível consulte [este link](https://packaging.python.org/en/latest/tutorials/installing-packages/), caso contrário continue e execute o comando `pip install notebook`
+  3. Para abrir o Jupyter Notebook execute o comando `jupyter notebook` no Prompt/Terminal
+
+---
+### Python e Google Colab
+
+**Opção 2**: ambiente na nuvem
+
+- **Utilizando o Google Colab**:
+
+  1. Crie um conta no Google e faça o login no [Google Colab](https://research.google.com/colaboratory/)
+  2. Uma vez logado na conta, clique no botão *Novo notebook/New notebook* para abrir uma sessão do Jupyter na nuvem
+
+Pronto! Ao utilizar o ambiente de nuvem não é necessário instalar o Python ou Jupyter Notebook, eles já estão prontos para uso!
+
+Vale pontuar que a plataforma Google Colab pode ser usada gratuitamente mas com limitação de recursos de hardware.
+
+---
+### Python e Google Colab
+
+**Teste o funcionamento**
+
+Uma vez que você tenha um ambiente de programação em Python preparado, é importante testar o seu funcionamento. Uma maneira simples de fazer isso é exemplificada abaixo.
+
+Abra o Jupyter e, na primeira célula de código, teste a instalação/carregamento de algum pacote (copie/cole o código abaixo e aperte Ctrl+Enter para executar). Se você não obteve erros, como abaixo, significa que está tudo funcionando!
+
+```python
+# Instala a biblioteca pandas usando o pip
+import sys
+!{sys.executable} -m pip install pandas
+# Importa a biblioteca
+import pandas
+# Quanto é 1 + 1?
+1+1
+```
+
+
+---
+### Referências
+
+Blanchard, O. (2017). *Macroeconomics*. Pearson Education Limited. 
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9",
+"navigation": {
+"scroll": false
+}
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,383 @@
+---
+title: "Introdução à Macroeconomia"
+subtitle: "Macroeconomia para Investimentos"
+author: 'Vítor Wilher<br><span style = "font-size: 70%;">Cientista-Chefe da Análise Macro<br>'
+#date: "<span style = 'font-size: 70%;'>`r format(Sys.Date(), '%d de %B de %Y')`</span>"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+      navigation: 
+        scroll: false
+params:
+  logo_slides: "https://analisemacro.com.br/wp-content/uploads/dlm_uploads/2021/10/logo_am.png"
+---
+
+```{r, file = "./rmd/setup.R", include=FALSE}
+```
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+options(htmltools.preserve.raw = FALSE)
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning   = FALSE,  # exibir avisos do console?
+  message   = FALSE,  # exibir mensagens do console?
+  dpi       = 300,    # resolução
+  fig.align = "center"# alinhamento de imagens
+  )
+```
+
+
+```{css, echo=FALSE}
+pre {
+  white-space: pre-wrap;
+  overflow-y: scroll !important;
+  max-height: 45vh !important;
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.lea {
+margin: auto;
+width: 50%;
+}
+
+.tiny40 .remark-code {
+  font-size: 40%; !important;
+}
+```
+
+
+
+### Temas de hoje
+
+- O que é macroeconomia?<br><br>
+- Motivações clássicas da macroeconomia<br><br>
+- Como os economistas pensam?<br><br>
+- Conceitos fundamentais<br><br>
+- Preparando as ferramentas
+
+
+---
+class: middle, center, inverse
+# O que é macroeconomia?
+
+---
+### O que é macroeconomia?
+
+A macroeconomia é um ramo da ciência econômica que estuda o **comportamento de uma economia como um todo**. Em contraste, a microeconomia se preocupa em como os indivíduos e firmas tomam decisões.
+
+**Por exemplo**: 
+
+- A decisão de um trabalhador em fazer horas extras não é um problema macroeconômico;
+- A taxa de inflação observada em uma economia é um problema macroeconômico.
+
+Dessa forma, os macroeconomistas preocupam-se em analisar indicadores agregados como PIB, taxa de desemprego e índices de preços para entender como toda a economia funciona.
+
+Em termos didáticos, você também pode pensar na distinção entre macro e micro com o uso de uma **analogia**:
+
+- A **macroeconomia** procura olhar apenas para a floresta como um todo, sem se preocupar com as árvores;
+- A **microeconomia** se preocupa com as árvores individualmente e se esquece da floresta.
+
+No entanto, a teoria econômica moderna combina conceitos micro e macro, de modo que a macroeconomia atual é microfundamentada. Ao longo do nosso curso, sempre que for pertinente, faremos considerações sobre as árvores, mas nossa preocupação principal será a floresta.
+
+
+---
+### Por que a macroeconomia é "agregada"?
+
+O todo é mais complexo do que a soma das partes. Não é possível descrever uma economia formando modelos para todas as empresas e indivíduos e todos os seus efeitos cruzados.
+
+A macroeconomia investiga o comportamento agregado impondo **premissas simplificadoras** ("suponha que existam muitas firmas idênticas que produzem o mesmo bem"), mas sem abstrair as características essenciais.
+
+Essas premissas são utilizadas para construir **modelos macroeconômicos**. Normalmente, esses modelos possuem três aspectos:
+
+- uma "história";
+- uma formulação matemática;
+- e uma representação gráfica.
+
+
+---
+class: middle, center, inverse
+# Motivações clássicas da macroeconomia
+
+---
+### Metas de política econômica
+
+Os políticos devem ser aconselhados sobre como influenciar o comportamento da economia, de modo que metas especificadas possam ser cumpridas de forma otimizada. Conforme Blanchard (2017), as metas são, geralmente, constituidas pelo tripé de: **crescimento econômico, preços estáveis e baixo desemprego**.
+
+```{r, echo=FALSE, fig.width=12, fig.height=4.5}
+library(magrittr)
+
+variables <- c(
+  "**PIB** (var. % anual, IBGE)"   = 7326,
+  "**IPCA** (var. % mensal, IBGE)" = 433,
+  "**Desemprego** (%, PNADC/IBGE)" = 24369
+  )
+
+df_macro <- GetBCBData::gbcbd_get_series(
+  id          = variables,
+  first.date  = lubridate::ymd("2000-01-01"),
+  use.memoise = FALSE
+  )
+
+colors <- c(
+  blue  = "#282f6b",
+  red   = "#b22200",
+  green = "#224f20"
+  )
+
+df_macro %>% 
+  dplyr::select("date" = "ref.date", "variable" = "series.name", "value") %>% 
+  ggplot2::ggplot() +
+  ggplot2::aes(x = date, y = value, color = variable) +
+  ggplot2::geom_line(size = 2) +
+  ggplot2::facet_wrap(facets = ~variable, scales = "free") +
+  ggplot2::scale_color_manual(values = unname(colors)) +
+  ggplot2::scale_y_continuous(
+    labels = scales::number_format(big.mark = ".", decimal.mark = ",")
+    ) +
+  ggplot2::labs(x = NULL, y = NULL, caption = "**Elaboração**: analisemacro.com.br") +
+  ggplot2::theme_light() +
+  ggplot2::theme(
+    legend.position  = "none", 
+    strip.text       = ggtext::element_markdown(color = "black", size = 16),
+    strip.background = ggplot2::element_blank(),
+    plot.caption     = ggtext::element_markdown(size = 12),
+    axis.text        = ggplot2::element_text(size = 12)
+  )
+```
+
+
+---
+### Tópicos de macroeconomia
+
+Dessa forma, muitos tópicos interessantes podem surgir e são estudados na macroeconomia, como:
+
+- Por que o custo de vida continua subindo?<br><br>
+- Por que milhões de pessoas estão desempregadas, mesmo quando a economia está crescendo?<br><br>
+- O que causa recessões? E os ciclos econômicos?<br><br>
+- Aumentar a oferta monetária pode gerar mais crescimento?<br><br>
+- Por que tantos países são pobres? Quais políticas poderiam ajudá-los a sair da pobreza?<br><br>
+- O que determina o crescimento econômico de longo prazo da economia?<br><br>
+- A taxa de câmbio deve ser mantida em um nível fixo?<br><br>
+- Pode-se trocar um aumento da inflação por uma diminuição do desemprego?
+
+Essas não são questões triviais.
+
+
+---
+class: middle, center, inverse
+# Como os economistas pensam?
+
+---
+### Os economistas pensam com modelos
+
+De forma a endereçar questões como essas os economistas costumam formular modelos, que podem ser entendidos como representações simplificadas do mundo real, usados como base para explicar relações ou realizar previsões.
+
+**Por exemplo**: um mapa é, em essência, um modelo para nos locomovermos de um ponto A a um ponto B.
+
+.lea[
+```{r, echo=FALSE, fig.height=5, out.width="100%"}
+library(leaflet)
+
+leaflet() %>% 
+  addTiles() %>% 
+  setView(lat = -27.59002472616261, -48.556792008091456, lng = -48.556792008091456, zoom = 15.4) %>% 
+  addAwesomeMarkers(
+    lat   = -27.592412710414667, 
+    lng   = -48.56058389281001, 
+    icon  = list(markerColor = "red", iconColor = "black", library = "ion", icon = "ios-close")
+    ) %>% 
+  addAwesomeMarkers(
+    lat   = -27.588874817052066,
+    lng   = -48.55353897027061, 
+    icon  = list(markerColor = "blue", iconColor = "black", library = "ion", icon = "ios-close")
+    )
+```
+]
+
+
+---
+### A comunicação dos economistas
+
+Conforme já mencionado, dadas as premissas, os modelos possuem uma "história", uma formulação matemática e uma representação gráfica. 
+
+Geralmente, os economistas se beneficiam do uso da **linguagem matemática** como forma de simplificar e tornar mais claras as relações entre as variáveis macroeconômicas. No entanto, tentaremos minimizar ao máximo essa forma de comunicação, optando por abordar modelos macroeconômicos de uma maneira simples, intuitiva e lógica.
+
+**Representações gráficas** são úteis e serão oportunamente exploradas para facilitar o aprendizado.
+
+Sendo assim, utilizaremos a macroeconomia para:
+
+- Tentar entender o mundo real;
+- Avaliar a utilidade de modelos com dados reais;
+- Exercitar habilidades quantitativas.
+
+
+---
+class: middle, center, inverse
+# Conceitos fundamentais
+
+
+---
+### Conceitos fundamentais
+
+- **Ceteris paribus**: uma expressão do latim que significa "todo o mais é constante", ou seja, nada muda, exceto o fator ou fatores que estão sendo estudados;
+
+- **Variável endógena**: também chamada de dependente, é a variável cujos valores são determinados no modelo;
+
+- **Variável exógena**: também chamada de independente, é a variável cujos valores são determinados fora do modelo, ou seja, o modelo toma seus valores e comportamento como dados;
+
+- **Preços flexíveis**: uma suposição de que os preços são flexíveis, ou seja, se ajustam para igualar oferta e demanda. Por exemplo: com o advento da pandemia da Covid-19 os preços de alimentação e bebidas aumentaram expressivamente no Brasil;
+
+- **Preços rígidos**: no curto prazo, muitos preços são rígidos, ou seja, se ajustam lentamente em resposta a mudanças na oferta ou na demanda. Por exemplo: muitos contratos de trabalho fixam o salário nominal por 1 ano ou mais.
+
+
+---
+### Conceitos fundamentais
+
+- **Agregados macroeconômicos**: aquelas variáveis que representam de forma agregada toda a
+economia de um país, sintetizando informações para a análise e comparações. Por exemplo: o PIB é a soma de todos os bens e serviços finais produzidos por um país em determinado período de tempo.
+
+- **Fluxo**: magnitude econômica medida dentro de um intervalo de tempo. Por exemplo: PIB (taxa trimestral), salário (mensal), os pagamentos (periódicos) de uma dívida parcelada;
+
+- **Estoque**: é uma magnitude medida em um determinado ponto específico no tempo. Por exemplo: saldo do CAGED no ano, dívida externa do país, população do país.
+
+
+
+---
+class: middle, center, inverse
+# Preparando as ferramentas
+
+---
+### As ferramentas
+
+.pull-left[
+
+Ao longo do curso utilizaremos as **linguagens de programação R e Python** para exercícios aplicados explorando tópicos pertinentes. São ambas ferramentas gratuitas e amplamente utilizadas em diversas áreas. Saiba mais sobre o R <a href="https://pt.wikipedia.org/wiki/R_(linguagem_de_programa%C3%A7%C3%A3o)">aqui</a> e sobre o Python [aqui](https://pt.wikipedia.org/wiki/Python).
+
+]
+
+.pull-right[
+
+.center[
+<img src="imgs/r.png" width="190"/>&nbsp; &nbsp; <img src="imgs/python.svg" width="150"/> 
+]
+
+]
+
+Se esse é o seu primeiro contato com as linguagens, preparamos a seguir um breve **tutorial de primeiros passos** com o objetivo é preparar um ambiente de programação. Ou seja, expliraremos o que você precisa fazer para poder, nas próximas aulas, realizar os exercícios práticos, seja em R ou em Python. 
+
+Vale frisar que a escolha das **interfaces** para utilização das linguagens é arbitrária e pessoal, você é livre para utilizar opções alternativas. No curso utilizaremos as interfaces mais conhecidas atualmente e que proporcionam o mínimo possível de barreiras à entrada.
+
+
+---
+### R e RStudio
+
+**Opção 1**: trabalhando localmente
+
+- **Instalar o R**:<br>1. Acesse o CRAN por [https://www.r-project.org/](https://www.r-project.org/) e em *Downloads*, na barra lateral esquerda, clique em *CRAN*<br>2. Escolha uma localização próxima a você (i.e. Brasil) e clique no link correspondente<br>3. Clique em "*Download for ...*", onde ... é o sistema operacional que você usa (Windows, Linux, macOS?)<br>4. Baixando e instalando o R:<br>4.1 Se **Windows**: <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.1.1 Clique em *base*, depois em *Download R-x.x.x for Windows*, sendo que x.x.x é a última versão do R disponível, execute o arquivo baixado e siga as instruções da tela para instalação.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.1.2 Baixe e instale, também, o **[RTools](https://cran.fiocruz.br/bin/windows/Rtools/)** (veja como [neste link](https://cran.fiocruz.br/bin/windows/Rtools/)).<br>4.2 Se **macOS**: em *Latest release* clique no link *R-x.x.x.pkg* correspondente a sua versão de macOS, execute o arquivo baixado e siga as instruções da tela para instalação.<br>4.3 Se **Linux**: clique no link correspondente a distribuição do Linux que você utiliza (ubuntu, debian, etc.) e siga as instruções da tela para instalação.
+
+- **Instalar o RStudio**:<br>1. Baixe o programa, correspondente ao seu sistema operacional, através [deste link](https://www.rstudio.com/products/rstudio/download/#download)<br>2. Execute o arquivo baixado e siga as instruções da tela de instalação (em caso de Linux, [veja esse link](https://www.rstudio.com/products/rstudio/download-server/debian-ubuntu/)).
+
+---
+### R e RStudio
+
+**Opção 2**: ambiente na nuvem
+
+- **Utilizando o RStudio Cloud**:
+
+  1. Crie um conta na [RStudio Cloud](https://rstudio.cloud/) (pode ser a gratuita)
+  2. Uma vez logado na conta, clique no botão *New Project > New RStudio Project* para abrir uma sessão do RStudio na nuvem
+
+Pronto! Ao utilizar o ambiente de nuvem não é necessário instalar o R ou RStudio, eles já estão prontos para uso!
+
+Vale pontuar que a plataforma RStudio Cloud pode ser usada gratuitamente mas com limitação de recursos de hardware.
+
+---
+### R e RStudio
+
+**Teste o funcionamento**
+
+Uma vez que você tenha um ambiente de programação em R preparado, é importante testar o seu funcionamento. Uma maneira simples de fazer isso é exemplificada abaixo.
+
+Abra o RStudio e, no Console, teste a instalação/carregamento de algum pacote (copie/cole o código abaixo e aperte Enter para executar). Se você não obteve erros, como abaixo, significa que está tudo funcionando!
+
+```{r}
+# Verifica se o pacote existe e o instala se necessário (do CRAN)
+if (!require("tidyverse")) {install.packages("tidyverse")} 
+# Carrega o pacote
+library(tidyverse) 
+# Quanto é 1 + 1?
+1+1
+```
+
+Não se preocupe em entender os comando neste momento, voltaremos a isso nas próximas aulas.
+
+---
+### Python e Google Colab
+
+**Opção 1**: ambiente local
+
+- **Instalar o Python**:
+  1. Acesse o site [https://www.python.org/downloads/](https://www.python.org/downloads/) e clique no botão de *Download Python* na tela ou navegue até o link de download da versão para o seu sistema operacional
+  2. Instalando o Python:<br>
+    2.1 Se **Windows** ou **macOS**: execute o arquivo baixado e siga as instruções da tela para instalação. Importante: habilite, na tela de instalação, a opção de adicionar o Python ao $PATH$ e de instalar o $pip$;<br>
+    2.2 Se **Linux**: verifique as instruções de instalação através [deste link](https://docs.python-guide.org/starting/install3/linux/#install3-linux).
+
+---
+### Python e Google Colab
+
+- **Instalar o Jupyter Notebook**:
+  1. Abra o Prompt de Comando/Terminal do seu sistema e verifique se o $pip$ está instalado junto ao Python:
+    1.1 Se Windows: execute no Prompt o comando `py -m pip --version`<br>
+    1.2 Se Linux/macOS: execute no Terminal o comando `python3 -m pip --version`
+  2. Se o $pip$ não estiver disponível consulte [este link](https://packaging.python.org/en/latest/tutorials/installing-packages/), caso contrário continue e execute o comando `pip install notebook`
+  3. Para abrir o Jupyter Notebook execute o comando `jupyter notebook` no Prompt/Terminal
+
+---
+### Python e Google Colab
+
+**Opção 2**: ambiente na nuvem
+
+- **Utilizando o Google Colab**:
+
+  1. Crie um conta no Google e faça o login no [Google Colab](https://research.google.com/colaboratory/)
+  2. Uma vez logado na conta, clique no botão *Novo notebook/New notebook* para abrir uma sessão do Jupyter na nuvem
+
+Pronto! Ao utilizar o ambiente de nuvem não é necessário instalar o Python ou Jupyter Notebook, eles já estão prontos para uso!
+
+Vale pontuar que a plataforma Google Colab pode ser usada gratuitamente mas com limitação de recursos de hardware.
+
+---
+### Python e Google Colab
+
+**Teste o funcionamento**
+
+Uma vez que você tenha um ambiente de programação em Python preparado, é importante testar o seu funcionamento. Uma maneira simples de fazer isso é exemplificada abaixo.
+
+Abra o Jupyter e, na primeira célula de código, teste a instalação/carregamento de algum pacote (copie/cole o código abaixo e aperte Ctrl+Enter para executar). Se você não obteve erros, como abaixo, significa que está tudo funcionando!
+
+```python
+# Instala a biblioteca pandas usando o pip
+import sys
+!{sys.executable} -m pip install pandas
+# Importa a biblioteca
+import pandas
+# Quanto é 1 + 1?
+1+1
+```
+
+
+---
+### Referências
+
+Blanchard, O. (2017). *Macroeconomics*. Pearson Education Limited. 
+
+
+
