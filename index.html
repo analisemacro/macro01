@@ -5,6 +5,22 @@
     <meta charset="utf-8" />
     <meta name="author" content="Vítor Wilher Cientista-Chefe da Análise Macro " />
     <script src="libs/header-attrs/header-attrs.js"></script>
+    <script src="libs/fabric/fabric.min.js"></script>
+    <link href="libs/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-scribble/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#282f6b"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <script src="libs/mark.js/mark.min.js"></script>
+    <link href="libs/xaringanExtra-search/search.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-search/search.js"></script>
+    <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":true}) })</script>
+    <script src="libs/clipboard/clipboard.min.js"></script>
+    <link href="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copiar","success":"Copiado!","error":"Pressione Ctrl+C para copiar"})</script>
+    <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
+    <link href="libs/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
     <script src="libs/htmlwidgets/htmlwidgets.js"></script>
     <script src="libs/jquery/jquery.min.js"></script>
     <link href="libs/leaflet/leaflet.css" rel="stylesheet" />
@@ -23,9 +39,15 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Introdução à Macroeconomia
+]
+.subtitle[
 ## Macroeconomia para Investimentos
+]
+.author[
 ### Vítor Wilher<br><span style = "font-size: 70%;">Cientista-Chefe da Análise Macro<br>
+]
 
 ---
 
@@ -112,7 +134,7 @@ class: middle, center, inverse
 
 Os políticos devem ser aconselhados sobre como influenciar o comportamento da economia, de modo que metas especificadas possam ser cumpridas de forma otimizada. Conforme Blanchard (2017), as metas são, geralmente, constituidas pelo tripé de: **crescimento econômico, preços estáveis e baixo desemprego**.
 
-&lt;img src="macro01_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -144,8 +166,8 @@ De forma a endereçar questões como essas os economistas costumam formular mode
 **Por exemplo**: um mapa é, em essência, um modelo para nos locomovermos de um ponto A a um ponto B.
 
 .lea[
-<div id="htmlwidget-f78ee94ed296fbeed2c4" style="width:100%;height:1500px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f78ee94ed296fbeed2c4">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addAwesomeMarkers","args":[-27.5924127104147,-48.56058389281,{"markerColor":"red","iconColor":"black","icon":"ios-close","prefix":"ion"},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addAwesomeMarkers","args":[-27.5888748170521,-48.5535389702706,{"markerColor":"blue","iconColor":"black","icon":"ios-close","prefix":"ion"},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"setView":[[-27.5900247261626,-48.5567920080915],15.4,-48.5567920080915],"limits":{"lat":[-27.5924127104147,-27.5888748170521],"lng":[-48.56058389281,-48.5535389702706]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-c3c5f0bd733f64ff4bfb" style="width:100%;height:1500px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c3c5f0bd733f64ff4bfb">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addAwesomeMarkers","args":[-27.5924127104147,-48.56058389281,{"markerColor":"red","iconColor":"black","icon":"ios-close","prefix":"ion"},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addAwesomeMarkers","args":[-27.5888748170521,-48.5535389702706,{"markerColor":"blue","iconColor":"black","icon":"ios-close","prefix":"ion"},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"setView":[[-27.5900247261626,-48.5567920080915],15.4,-48.5567920080915],"limits":{"lat":[-27.5924127104147,-27.5888748170521],"lng":[-48.56058389281,-48.5535389702706]}},"evals":[],"jsHooks":[]}</script>
 ]
 
 
@@ -256,7 +278,7 @@ Abra o RStudio e, no Console, teste a instalação/carregamento de algum pacote 
 
 
 ```
-## [1] 2
+# [1] 2
 ```
 
 Não se preocupe em entender os comando neste momento, voltaremos a isso nas próximas aulas.
@@ -374,6 +396,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
